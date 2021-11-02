@@ -1,0 +1,32 @@
+﻿@model List<ZadatakWM2.Context.Proizvod>
+@{
+    ViewBag.Title = "ProizvodList";
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Kategorija</th>
+        <th>Proizvodjac</th>
+        <th>Dobavljac</th>
+        <th>Cena</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.naziv</td>
+                    <td>@item.opis</td>
+                    <td>@item.kategorija</td>
+                    <td>@item.proizvodjac</td>
+                    <td>@item.dobavljac</td>
+                    <td>@item.cena</td>
+                    <td>
+                    <a href="@Url.Action("Proizvod", new { item.id, item.naziv, item.opis, item.kategorija, item.proizvodjac, item.dobavljac, item.cena})" class="btn btn-success">Izmeni</a>
+                    <a href="@Url.Action("Delete", new { item.id})" class="btn btn-danger"> Izbrisi</a>
+                    </td>
+                </tr>
+
+            }
+</table>
+

@@ -1,0 +1,62 @@
+﻿@model ZadatakWM2.Context.Proizvod
+
+@{
+    ViewBag.Title = "Proizvod";
+}
+<style>
+    .error{
+        color:red;
+    }
+</style>
+@using (Html.BeginForm("AddProizvod", "Proizvod", FormMethod.Post))
+{
+<div class="container">
+    <div class="form-group">
+        @Html.HiddenFor(x=>x.id)
+        <label>Naziv</label>
+        @Html.ValidationMessageFor(x => x.naziv, "",new { @class="error"})
+        @Html.TextBoxFor(x => x.naziv, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Opis</label>
+        @Html.ValidationMessageFor(x => x.opis, "", new { @class = "error" })
+        @Html.TextAreaFor(x => x.opis, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Kategorija</label>
+        @Html.ValidationMessageFor(x => x.kategorija, "", new { @class = "error" })
+        @Html.TextBoxFor(x => x.kategorija, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Proizvodjac</label>
+        @Html.ValidationMessageFor(x => x.proizvodjac, "", new { @class = "error" })
+        @Html.TextBoxFor(x => x.proizvodjac, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Dobavljac</label>
+        @Html.ValidationMessageFor(x => x.dobavljac, "", new { @class = "error" })
+        @Html.TextBoxFor(x => x.dobavljac, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        <label>Cena</label>
+        @Html.ValidationMessageFor(x => x.cena, "", new { @class = "error" })
+        @Html.TextBoxFor(x => x.cena, new { @class = "form-control", @rows = "10" })
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" >Potvrdi</button>
+        
+
+    </div>
+
+</div>
+
+            }
+
+
+
