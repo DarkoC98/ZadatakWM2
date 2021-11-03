@@ -5,11 +5,43 @@ using System.Web;
 using System.Web.Mvc;
 using ZadatakWM2.Context;
 using System.Data.Entity;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace ZadatakWM2.Controllers
 {
     public class ProizvodController : Controller
     {
+        //JSON - Nazalost nisam se snasao sa JSON-om
+        
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var webClient = new WebClient();
+            var json = webClient.DownloadString(@"C:\Users\Darko\source\repos\ZadatakWM2\ZadatakWM2\ProizvodJSON\Proizvod.json");
+            var proizvodi = JsonConvert.DeserializeObject<Proizvod>(json);
+            return View(proizvodi);
+        }
+
+
+
+
+        //
+        public ActionResult ProizvodiListJ()
+        {
+            return View(GetProizvods());
+        }
+        IEnumerable<Proizvod> GetProizvods()
+        {
+            using(ZadatakWMEntities db = new ZadatakWMEntities())
+            {
+               return db.Proizvods.ToList<Proizvod>();
+            }
+        }
         // GET: Proizvod
 
         ZadatakWMEntities dbObj = new ZadatakWMEntities();
